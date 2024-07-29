@@ -1,0 +1,9 @@
+# To enable "Ctrl + s" in terminal
+stty -ixon
+
+# # Source my script
+M_PWD=$(realpath $BASH_SOURCE)
+PARENT_DIR=$(dirname $M_PWD)
+PARENT_DIR=$(dirname $PARENT_DIR)
+export PATH=$PATH:$PARENT_DIR
+export PATH=$PATH:/usr/local/bin/
