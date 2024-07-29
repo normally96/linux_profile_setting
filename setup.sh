@@ -23,5 +23,7 @@ else
     cp $CONF_DIRS/$VIM_CONF ~
     cp $CONF_DIRS/$CTAGS_CONF $CTAGS_DIR
 fi
+# Git configuration
+git config --global core.editor "vim"
 
 source $PWD/$CONF_DIRS/$MY_BASHRC

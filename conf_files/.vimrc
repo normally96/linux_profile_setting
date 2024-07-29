@@ -88,9 +88,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
-" Color Scheme
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'preservim/tagbar'
 call plug#end()
 
 "" Color scheme setting
@@ -103,4 +102,15 @@ set rtp+=~/.fzf
 nnoremap <C-f> :Ag<CR>
 nnoremap <C-i> :Buffers<CR>
 nnoremap <C-k> :Windows<CR>
+nnoremap ff :Files<CR>
+
+"" Tagbar Outliner
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_map_zoomwin = "zlk"
+let g:tagbar_map_closefold = "x" 	 " to map hotkey with the NerdTre
+let g:tagbar_map_closeallfolds = "X" " to map hotkey with the NerdTre
+let g:tagbar_map_openallfolds = "O"  " to map hotkey with the NerdTre
+
+
+
 

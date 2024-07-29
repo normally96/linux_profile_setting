@@ -3,9 +3,9 @@
 
 SESSION_NAME=$1
 WINDOW_NAMES=("ws" "conf" "misc")
-WINDOW_DIRS=("/home/anie/workspace" \
-			"/home/anie/linux_profile_setting" \
-			"/home/anie" )
+WINDOW_DIRS=("$HOME/workspace" \
+			"$HOME/linux_profile_setting" \
+			"$HOME" )
 
 Len=${#WINDOW_NAMES[@]}
 
