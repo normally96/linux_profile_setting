@@ -2,8 +2,9 @@
 # Create tmux session with specific session name and window names
 
 SESSION_NAME=$1
-WINDOW_NAMES=("ws" "conf" "misc")
+WINDOW_NAMES=("ws" "ssh" "conf" "misc")
 WINDOW_DIRS=("$HOME/workspace" \
+			"$HOME" \
 			"$HOME/linux_profile_setting" \
 			"$HOME" )
 

@@ -29,3 +29,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ### 6. Install ctags
   sudo apt-get install -y pkg-config
   https://github.com/universal-ctags/ctags?tab=readme-ov-file#how-to-build-and-install
+
+### 7. Install x-clip to enable copy in tmux
+	sudo apt-get install --assume-yes xclip

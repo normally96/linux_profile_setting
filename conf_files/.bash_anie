@@ -7,3 +7,11 @@ PARENT_DIR=$(dirname $M_PWD)
 PARENT_DIR=$(dirname $PARENT_DIR)
 export PATH=$PATH:$PARENT_DIR
 export PATH=$PATH:/usr/local/bin/
+export PATH=$PATH:/home/anie/x-tools/gcc-arm-none-eabi-10.3-2021.10/bin # for arm cortex m4 compiler
+
+# Change PS1 to discard HOSTNAME
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# Alias for fast create tmux session
+alias tm="tmux_create.sh anie"
+alias ssh_remote="sshpass -p 1 ssh anie@192.168.1.15"

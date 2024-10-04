@@ -18,6 +18,7 @@ endfunc
 " setglobal relativenumber
 autocmd InsertEnter * :call InserModeSetLine()
 autocmd InsertLeave * :setlocal relativenumber
+autocmd VimEnter * :set relativenumber
 
 function! g:ToggleNuMode()
   if(&relativenumber == 1)
@@ -30,18 +31,13 @@ endfunc
 
 map <C-ll> :call g:ToggleNuMode()<CR>
 
-" delete without yanking
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
-" replace currently selected text with default register  without yanking it
-vnoremap <leader>p "_dP
-
 "" Config for NERDtree
 " autocmd VimEnter * NERDTree
 let NERDTreeShowHidden=1
-nnoremap <C-b> :NERDTreeToggle<CR>
+nnoremap <C-F7> :NERDTreeToggle<CR>
+nnoremap <F7> :NERDTreeFind<CR>
 " Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 "" Remap window split
 nnoremap <C-w>\| :vsplit<CR>
@@ -61,21 +57,26 @@ nnoremap <silent> <A-h> :TmuxNavigateLeft<CR>
 nnoremap <silent> <A-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <A-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <A-l> :TmuxNavigateRight<CR>
+inoremap <silent> <Esc>h <Esc>:TmuxNavigateLeft<CR>   " Alt + h
+inoremap <silent> <Esc>j <Esc>:TmuxNavigateDown<CR>	  " Alt + j
+inoremap <silent> <Esc>k <Esc>:TmuxNavigateUp<CR>	  " Alt + k
+inoremap <silent> <Esc>l <Esc>:TmuxNavigateRight<CR>  " Alt + l
 
 " Setting hotkey
-nnoremap <C-d> :t.<CR> " Duplicate current line
+" nnoremap <C-d> :t.<CR> " Duplicate current line
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <ESC>:w<CR>
+inoremap <C-Left> <ESC>:w<CR>
 
 "Commenting blocks of code.
 augroup commenting_blocks_of_code
   autocmd!
-  autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-  autocmd FileType conf,fstab       let b:comment_leader = '# '
-  autocmd FileType tex              let b:comment_leader = '% '
-  autocmd FileType mail             let b:comment_leader = '> '
-  autocmd FileType vim              let b:comment_leader = '" '
+  autocmd FileType c,cpp,java,scala,rust     let b:comment_leader = '// '
+  autocmd FileType sh,ruby,python,make,tmux  let b:comment_leader = '# '
+  autocmd FileType conf,fstab                let b:comment_leader = '# '
+  autocmd FileType tex                       let b:comment_leader = '% '
+  autocmd FileType mail                      let b:comment_leader = '> '
+  autocmd FileType vim                       let b:comment_leader = '" '
 augroup END
 noremap <silent> <C-_> :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>   " Ctrl + / : to comment
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>  " ,cu : to uncomment
@@ -89,13 +90,16 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 Plug 'preservim/tagbar'
 call plug#end()
 
 "" Color scheme setting
 set t_Co=256
 set background=dark
-colorscheme PaperColor
+let g:gruvbox_contrast_dark = "hard"
+" colorscheme PaperColor
+colorscheme gruvbox
 
 "" fzf Setting
 set rtp+=~/.fzf
@@ -105,12 +109,10 @@ nnoremap <C-k> :Windows<CR>
 nnoremap ff :Files<CR>
 
 "" Tagbar Outliner
-nmap <F8> :TagbarToggle<CR>
+nmap <C-F8> :TagbarToggle<CR>
+nmap <F8> :TagbarOpenAutoClose<CR>
 let g:tagbar_map_zoomwin = "zlk"
 let g:tagbar_map_closefold = "x" 	 " to map hotkey with the NerdTre
 let g:tagbar_map_closeallfolds = "X" " to map hotkey with the NerdTre
 let g:tagbar_map_openallfolds = "O"  " to map hotkey with the NerdTre
-
-
-
-
+let g:tagbar_sort = 0
